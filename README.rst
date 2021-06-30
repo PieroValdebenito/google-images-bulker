@@ -1,49 +1,76 @@
-## this is a fork of: google-images-download
+this is a fork of: google-images-download
+#########################################
+
+To build image
+
+.. code::
+
+  docker build . -t image-bulker
 
 To run with docker:
 
-docker build . -t image-bulker
+.. code::
 
-docker run -p 8080:80 image-bulker:latest
+  docker run -p 8080:80 image-bulker:latest
 
-Changes:
-- Added fastAPI with 3 endpoints (healthcheck, search, and clear temp files)
 
-### Healthcheck
+Changes
+=======
+ - Added fastAPI with 3 endpoints: healthcheck, search, and clear temp files
+
+Healthcheck
+===========
 
 GET /
 200
-```
- {"api_status":"ok"}
-```
 
-### Get images from google engine
+.. code:: javascript
+
+   {
+    "api_status":"ok"
+   }
+ 
+
+Get images from google engine
+=================================
 
 GET /search?keywords=puppy&limit=2
+
 Save the images in local and serve as static files until you clear temp files.
+
 Check more input params following the documentation bellow!
+
 
 
 Returns
 200
-```
-{
-"images": {
-        "puppy": [
-            "/images/puppy/el-perro-1.jpg",
-            "/images/puppy/el-perro-2.jpg"
-         ]
-    }
-}
-```
+
+.. code:: javascript
+
+  {
+  "images": {
+         "puppy": [
+              "/images/puppy/el-perro-1.jpg",
+              "/images/puppy/el-perro-2.jpg"
+           ]
+      }
+  }
+
+Now the image will be available at: http://0.0.0.0:8080/images/puppy/el-perro-1.jpg
+
 Note: many images may take longer, check logs for more info.
 
-GET /clear
 Clear temp files from local storage
-200
-```
- {"status":"ok"}
-```
+==================================
+GET /clear
+200 
+
+.. code:: javascript
+
+  {
+  "status": "ok"
+  }
+
 
 Google Images Download
 ######################
