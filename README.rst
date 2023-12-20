@@ -1,4 +1,4 @@
-this is a fork of: google-images-download
+this is fork of: google-images-download
 #########################################
 
 To build image
